@@ -1,0 +1,10 @@
+---
+interface Props { title: string; text: string; tall?: boolean }
+const { title, text, tall = false } = Astro.props;
+---
+<section class={`page-hero bg-ink${tall ? ' tall' : ''}`}>
+  <div class="container">
+    <h1 class="h1 sm" style="max-width:18ch">{title}</h1>
+    <p class="lead">{text}</p>
+  </div>
+</section>

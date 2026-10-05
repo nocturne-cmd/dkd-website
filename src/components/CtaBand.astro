@@ -1,0 +1,17 @@
+---
+import { site } from '../data/site';
+interface Props { title?: string }
+const { title = 'Mari bangun produk digital berikutnya bersama.' } = Astro.props;
+---
+<section class="cta bg-ink">
+  <div class="container cta-in">
+    <div>
+      <h2>{title}</h2>
+      <p>Ceritakan tantangan bisnis Anda. Kami siap membantu dari ide pertama hingga produk berjalan.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-mint" href="/kontak">Jadwalkan konsultasi gratis</a>
+      <a class="btn btn-ghost" href={`mailto:${site.email}`}>Kirim email</a>
+    </div>
+  </div>
+</section>

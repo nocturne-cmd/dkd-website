@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import OradoFeature from '../components/OradoFeature.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ModelGrid from '../components/ModelGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+import heroGame from '../assets/orado-game.jpg';
+import { site } from '../data/site';
+import { misi, nilai } from '../data/content';
+import { proyekLain } from '../data/projects';
+---
+<BaseLayout>
+  <section class="hero bg-ink">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1 class="h1">{site.tagline}</h1>
+          <p class="lead">Mitra teknologi terpercaya yang membantu perusahaan Indonesia melangkah lebih jauh, lebih cerdas, dan lebih efisien melalui solusi software, aplikasi mobile, dan games berbasis AI.</p>
+          <div class="hero-actions">
+            <a class="btn btn-mint" href="/proyek">Lihat proyek kami</a>
+            <a class="btn btn-ghost" href="/kontak">Konsultasi gratis</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <div class="frame-dark">
+            <Image src={heroGame} alt="Tampilan game ORADO, proyek unggulan kami" widths={[500, 800, 1000]} sizes="(min-width: 1024px) 520px, 90vw" loading="eager" />
+          </div>
+          <p class="caption">Game ORADO, salah satu proyek unggulan kami</p>
+        </div>
+      </div>
+      <div class="stats">
+        {site.stats.map((s) => <div class="stat"><b>{s.value}</b><span>{s.label}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-paper" id="tentang">
+    <div class="container">
+      <div class="about">
+        <div class="about-text">
+          <h2 class="h2">Teknologi yang bekerja untuk pertumbuhan bisnis Anda</h2>
+          <p>PT Dunia Kreasi Digital adalah software house yang berbasis di Gading Serpong, Banten. Teknologi bagi kami hanya berguna kalau benar-benar membantu bisnis: pekerjaan jadi lebih cepat, keputusan lebih mudah, dan pelanggan lebih puas.</p>
+          <p>Kami membuat website, aplikasi HP, dan game sesuai kebutuhan bisnis Anda, termasuk yang memakai fitur AI. Dari obrolan pertama sampai aplikasinya siap dipakai, Anda selalu tahu sudah sampai mana pekerjaannya.</p>
+        </div>
+        <div class="about-side">
+          <div class="vision">
+            <h3>Visi</h3>
+            <p>Menjadi mitra inovasi digital pilihan bagi perusahaan Indonesia yang ingin tumbuh lebih cerdas dan efisien.</p>
+          </div>
+          <div class="mission">
+            <h3>Misi</h3>
+            <ul>{misi.map((m) => <li><span>{m}</span></li>)}</ul>
+          </div>
+        </div>
+      </div>
+      <div class="cards c4 scroller">
+        {nilai.map((v) => (
+          <div class="card">
+            <div class="icon-box sm"><Icon name={v.icon} size={26} /></div>
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" id="layanan">
+    <div class="container">
+      <h2 class="h2 wide">Layanan yang menjawab masalah bisnis, bukan sekadar menulis kode</h2>
+      <p class="section-intro">Dari ide sampai produk yang berjalan, setiap layanan kami dimulai dari satu pertanyaan: masalah bisnis apa yang perlu diselesaikan?</p>
+      <ServiceGrid />
+      <div class="center mt-40">
+        <a class="btn btn-blue" href="/layanan">Lihat layanan, proses, dan teknologi</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-paper" id="proyek">
+    <div class="container">
+      <h2 class="h2">Proyek unggulan</h2>
+      <OradoFeature />
+      <div class="proj-grid scroller">
+        <ProjectCard {...proyekLain[0]} />
+        <ProjectCard {...proyekLain[2]} />
+      </div>
+      <div class="center mt-40">
+        <a class="btn btn-ink" href="/proyek">Lihat proyek lainnya</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" id="kerja-sama">
+    <div class="container">
+      <h2 class="h2 wide">Model kerja sama yang fleksibel sesuai kebutuhan Anda</h2>
+      <div style="margin-top:48px"><ModelGrid /></div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import game from '../assets/orado-game.jpg';
+import web from '../assets/orado-web.jpg';
+---
+<div class="orado">
+  <div class="orado-text">
+    <span class="badge">Proyek utama</span>
+    <h3>ORADO</h3>
+    <p>Kami bangga menjadi partner ORADO, organisasi domino pertama di tanah air yang telah diakui secara resmi. Bersama-sama, kami membangun platform digital yang memberikan kesempatan setara bagi atlet domino dari Sabang sampai Merauke untuk berkompetisi.</p>
+    <div class="pills">
+      <span class="pill">Web: Vue.js + Nuxt</span>
+      <span class="pill">Game: Cocos Creator</span>
+      <span class="pill">Cloud: AWS</span>
+    </div>
+  </div>
+  <div class="orado-media">
+    <div>
+      <div class="label">Game</div>
+      <div class="shot-game">
+        <Image src={game} alt="Tampilan menu utama game ORADO" widths={[500, 800, 1000]} sizes="(min-width: 1024px) 520px, 90vw" loading="lazy" />
+      </div>
+    </div>
+    <div>
+      <div class="label">Website</div>
+      <div class="shot-web">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <Image src={web} alt="Tampilan beranda website ORADO" widths={[500, 800, 1000]} sizes="(min-width: 1024px) 520px, 90vw" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+import { layanan } from '../data/content';
+---
+<div class="cards c4 scroller">
+  {layanan.map((s) => (
+    <div class="card tint">
+      <div class="icon-box"><Icon name={s.icon} /></div>
+      <h3>{s.title}</h3>
+      <p>{s.text}</p>
+    </div>
+  ))}
+</div>

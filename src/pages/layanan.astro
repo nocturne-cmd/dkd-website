@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import ProcessFlow from '../components/ProcessFlow.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { keunggulan, teknologi } from '../data/content';
+---
+<BaseLayout title="Layanan" description="Layanan PT Dunia Kreasi Digital: web application, mobile app, ERP, game dan AI, UI/UX, cloud, integrasi sistem, serta dukungan purna jual.">
+  <PageHero title="Dari ide sampai produk yang berjalan" text="Layanan, cara kerja, dan teknologi yang kami pakai untuk membantu bisnis Anda tumbuh." />
+
+  <section class="section bg-white">
+    <div class="container">
+      <h2 class="h2 wide">Layanan yang menjawab masalah bisnis, bukan sekadar menulis kode</h2>
+      <p class="section-intro">Setiap layanan kami dimulai dari satu pertanyaan: masalah bisnis apa yang perlu diselesaikan?</p>
+      <ServiceGrid />
+    </div>
+  </section>
+
+  <section class="section bg-ink">
+    <div class="container">
+      <h2 class="h2">Alasan perusahaan memilih kami</h2>
+      <p class="section-intro">Satu tim yang menangani strategi, desain, pengembangan, hingga dukungan setelah rilis. Anda cukup berbicara dengan satu mitra.</p>
+      <div class="cards c3 scroller">
+        {keunggulan.map((k) => (
+          <div class="card dark">
+            <h3>{k.title}</h3>
+            <p style="margin-top:10px">{k.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      <h2 class="h2 wide">Proses kerja yang rapi, Anda terlibat di setiap tahap</h2>
+      <p class="section-intro">Kami bekerja dalam siklus pendek yang disebut sprint (metode Agile/Scrum). Di akhir setiap sprint, Anda melihat hasil nyata dan ikut menentukan langkah berikutnya.</p>
+      <ProcessFlow />
+    </div>
+  </section>
+
+  <section class="section bg-navy">
+    <div class="container">
+      <h2 class="h2">Teknologi modern yang kami kuasai</h2>
+      <p class="section-intro">Kami memilih teknologi berdasarkan kebutuhan proyek, bukan tren. Teknologi yang tepat membuat produk lebih cepat, lebih aman, dan mudah dikembangkan.</p>
+      <div class="tech-list">
+        {teknologi.map((t) => (
+          <div class="tech-row">
+            <h3>{t.group}</h3>
+            <div class="chips">{t.items.map((i) => <span class="chip">{i}</span>)}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { nav, site } from '../data/site';
+const links = [...nav, { href: '/kontak', label: 'Kontak' }];
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <Image src={logo} alt={`Logo ${site.name}`} width={192} height={112} />
+      <p>{site.tagline}.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Navigasi</h3>
+      <nav aria-label="Navigasi situs">
+        {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+    </div>
+    <div class="footer-col wide">
+      <h3>Hubungi kami</h3>
+      <a href={`mailto:${site.email}`} style="margin-top:12px">{site.email}</a>
+      <address>
+        {site.address.line1}, {site.address.line2}<br />
+        {site.address.line3}<br />
+        {site.address.line4}
+      </address>
+    </div>
+  </div>
+  <div class="container"><div class="footer-bottom">© {year} {site.name}. Seluruh hak cipta dilindungi.</div></div>
+</footer>

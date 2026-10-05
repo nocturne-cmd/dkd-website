@@ -1,0 +1,15 @@
+---
+import { model } from '../data/content';
+---
+<div class="cards c2 scroller">
+  {model.map((m) => (
+    <div class="model">
+      <h3>{m.title}</h3>
+      <p>{m.text}</p>
+      <ul class="points">
+        {m.points.map((p) => <li><span>{p}</span></li>)}
+      </ul>
+    </div>
+  ))}
+</div>
+<p class="model-note">Belum yakin model mana yang paling cocok? Ceritakan kebutuhan Anda, kami bantu memilih yang paling efisien.</p>

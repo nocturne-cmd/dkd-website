@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+interface Props { image: ImageMetadata; alt: string; title: string; tag: string; text: string }
+const { image, alt, title, tag, text } = Astro.props;
+---
+<article class="proj">
+  <Image src={image} alt={alt} widths={[600, 900, 1200]} sizes="(min-width: 1024px) 590px, 90vw" loading="lazy" />
+  <div class="proj-body">
+    <h3>{title}</h3>
+    <div class="tag">{tag}</div>
+    <p>{text}</p>
+  </div>
+</article>

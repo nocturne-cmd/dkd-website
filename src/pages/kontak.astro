@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import { layananForm } from '../data/content';
+
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+---
+<BaseLayout title="Kontak" description="Hubungi PT Dunia Kreasi Digital untuk konsultasi gratis tentang website, aplikasi mobile, game, atau sistem untuk bisnis Anda.">
+  <PageHero tall title="Ceritakan kebutuhan Anda, kami bantu mewujudkannya." text="Punya ide aplikasi, website, game, atau sistem untuk bisnis Anda? Isi formulir di bawah. Konsultasi pertama gratis." />
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="form-card">
+          <h2>Kirim pesan</h2>
+          <form id="contact-form" data-endpoint={endpoint} data-email={site.email} novalidate>
+            <div class="fields">
+              <div class="field">
+                <label for="f-nama">Nama lengkap</label>
+                <input class="fld" id="f-nama" name="nama" type="text" autocomplete="name" placeholder="Nama Anda" required />
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input class="fld" id="f-email" name="email" type="email" autocomplete="email" placeholder="nama@perusahaan.com" required />
+              </div>
+              <div class="field">
+                <label for="f-perusahaan">Perusahaan <small>(opsional)</small></label>
+                <input class="fld" id="f-perusahaan" name="perusahaan" type="text" autocomplete="organization" placeholder="Nama perusahaan" />
+              </div>
+              <div class="field">
+                <label for="f-layanan">Yang Anda butuhkan</label>
+                <select class="fld" id="f-layanan" name="layanan">
+                  {layananForm.map((l) => <option value={l}>{l}</option>)}
+                </select>
+              </div>
+              <div class="field full">
+                <label for="f-pesan">Ceritakan kebutuhan Anda</label>
+                <textarea class="fld" id="f-pesan" name="pesan" rows="6" placeholder="Misalnya: kami ingin membuat aplikasi untuk mengelola antrian pelanggan..." required></textarea>
+              </div>
+              <div class="hp" aria-hidden="true">
+                <label for="f-web">Jangan diisi</label>
+                <input id="f-web" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-blue" type="submit">{endpoint ? 'Kirim pesan' : 'Kirim lewat email'}</button>
+              <p class="note">
+                {endpoint
+                  ? 'Pesan Anda dikirim langsung ke tim kami.'
+                  : `Tombol ini membuka aplikasi email Anda dengan pesan yang sudah terisi, tinggal dikirim ke ${site.email}.`}
+              </p>
+            </div>
+            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <div class="contact-side">
+          <div class="info-card">
+            <div class="icon-box"><Icon name="mail" /></div>
+            <div>
+              <h3>Email</h3>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="icon-box"><Icon name="pin" /></div>
+            <div>
+              <h3>Kantor</h3>
+              <address>
+                {site.address.line1}<br />{site.address.line2}<br />{site.address.line3}<br />{site.address.line4}
+              </address>
+              <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer">Buka di Google Maps</a>
+            </div>
+          </div>
+          <div class="after">
+            <h3>Setelah Anda mengirim pesan</h3>
+            <ol>
+              <li><span>Kami membaca kebutuhan Anda.</span></li>
+              <li><span>Kami menghubungi Anda untuk diskusi singkat.</span></li>
+              <li><span>Anda menerima estimasi dan rencana kerja.</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const statusEl = document.getElementById('form-status');
+  if (form && statusEl) {
+    const show = (type: 'ok' | 'err', msg: string) => {
+      statusEl.className = `form-status ${type}`;
+      statusEl.textContent = msg;
+    };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+      if (data.website) return; // honeypot terisi: kemungkinan bot
+      const endpoint = form.dataset.endpoint;
+      const email = form.dataset.email ?? '';
+      const lines = [
+        `Nama: ${data.nama}`,
+        `Email: ${data.email}`,
+        `Perusahaan: ${data.perusahaan || '-'}`,
+        `Kebutuhan: ${data.layanan}`,
+        '',
+        data.pesan,
+      ].join('\n');
+      const mailto = `mailto:${email}?subject=${encodeURIComponent('Konsultasi proyek: ' + data.layanan)}&body=${encodeURIComponent(lines)}`;
+
+      if (!endpoint) {
+        window.location.href = mailto;
+        return;
+      }
+      const btn = form.querySelector<HTMLButtonElement>('button[type=submit]');
+      if (btn) btn.disabled = true;
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ nama: data.nama, email: data.email, perusahaan: data.perusahaan, layanan: data.layanan, pesan: data.pesan }),
+        });
+        if (!res.ok) throw new Error('gagal');
+        form.reset();
+        show('ok', 'Terima kasih, pesan Anda sudah terkirim. Kami akan segera menghubungi Anda.');
+      } catch {
+        show('err', `Pesan belum terkirim. Silakan coba lagi, atau kirim langsung ke ${email}.`);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+  }
+</script>
