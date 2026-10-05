@@ -14,6 +14,14 @@ export const nilai: { icon: IconName; title: string; text: string }[] = [
   { icon: 'sparkle', title: 'Inovasi', text: 'Teknologi baru kami pakai bila menyelesaikan masalah nyata.' },
 ];
 
+// Catatan: tahun dan keterangan perjalanan ini perkiraan. Sesuaikan dengan sejarah perusahaan yang sebenarnya.
+export const perjalanan = [
+  { year: '2022', text: 'Berdiri di Gading Serpong dan menangani proyek software pertama.' },
+  { year: '2023', text: 'Merilis sistem ERP dan aplikasi mobile pendamping.' },
+  { year: '2025', text: 'Bermitra dengan ORADO membangun platform kompetisi nasional.' },
+  { year: '2026', text: 'Tumbuh menjadi 15+ profesional dengan fokus solusi berbasis AI.' },
+];
+
 export const layanan: { icon: IconName; title: string; text: string }[] = [
   { icon: 'web', title: 'Web Application', text: 'Portal, dashboard, dan platform web yang cepat, aman, dan siap bertumbuh bersama bisnis Anda.' },
   { icon: 'mobile', title: 'Mobile App', text: 'Aplikasi iOS, Android, dan cross-platform dengan pengalaman pengguna yang mulus.' },

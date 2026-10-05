@@ -3,18 +3,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import OradoFeature from '../components/OradoFeature.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import OradoCaseStudy from '../components/OradoCaseStudy.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { proyekLain } from '../data/projects';
 ---
 <BaseLayout title="Proyek" description="Proyek yang telah dikerjakan PT Dunia Kreasi Digital: ORADO, sistem ERP, aplikasi mobile, game berbasis AI, dan aplikasi reservasi restoran.">
   <PageHero title="Proyek yang telah kami kerjakan" text="Dari platform kompetisi nasional, sistem ERP, hingga game dan aplikasi web, berikut sebagian karya kami." />
-  <section class="section bg-paper" style="padding-top:clamp(40px,6vw,80px)">
+  <section class="section bg-paper" style="padding-block-end:0;padding-top:clamp(40px,6vw,80px)">
     <div class="container">
-      <OradoFeature />
-      <div class="proj-grid">
+      <OradoFeature caseStudyHref="#studi-kasus-orado" />
+    </div>
+  </section>
+
+  <OradoCaseStudy />
+
+  <section class="section bg-paper" id="proyek-lain">
+    <div class="container">
+      <h2 class="h2">Proyek lainnya</h2>
+      <div class="proj-grid" style="margin-top:40px">
         {proyekLain.map((p) => <ProjectCard {...p} />)}
       </div>
     </div>
   </section>
+
   <CtaBand />
 </BaseLayout>

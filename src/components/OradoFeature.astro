@@ -1,4 +1,6 @@
 ---
+interface Props { caseStudyHref?: string }
+const { caseStudyHref } = Astro.props;
 import { Image } from 'astro:assets';
 import game from '../assets/orado-game.jpg';
 import web from '../assets/orado-web.jpg';
@@ -13,6 +15,7 @@ import web from '../assets/orado-web.jpg';
       <span class="pill">Game: Cocos Creator</span>
       <span class="pill">Cloud: AWS</span>
     </div>
+    {caseStudyHref && <a class="btn btn-mint orado-link" href={caseStudyHref}>Baca studi kasus</a>}
   </div>
   <div class="orado-media">
     <div>

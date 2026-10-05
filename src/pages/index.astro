@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import ServiceGrid from '../components/ServiceGrid.astro';
@@ -7,9 +6,9 @@ import OradoFeature from '../components/OradoFeature.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ModelGrid from '../components/ModelGrid.astro';
 import CtaBand from '../components/CtaBand.astro';
-import heroGame from '../assets/orado-game.jpg';
+import HeroVisual from '../components/HeroVisual.astro';
 import { site } from '../data/site';
-import { misi, nilai } from '../data/content';
+import { misi, nilai, perjalanan } from '../data/content';
 import { proyekLain } from '../data/projects';
 ---
 <BaseLayout>
@@ -25,10 +24,7 @@ import { proyekLain } from '../data/projects';
           </div>
         </div>
         <div class="hero-media">
-          <div class="frame-dark">
-            <Image src={heroGame} alt="Tampilan game ORADO, proyek unggulan kami" widths={[500, 800, 1000]} sizes="(min-width: 1024px) 520px, 90vw" loading="eager" />
-          </div>
-          <p class="caption">Game ORADO, salah satu proyek unggulan kami</p>
+          <HeroVisual />
         </div>
       </div>
       <div class="stats">
@@ -65,6 +61,17 @@ import { proyekLain } from '../data/projects';
           </div>
         ))}
       </div>
+      <div class="journey">
+        <h3>Perjalanan kami</h3>
+        <ol class="timeline">
+          {perjalanan.map((j, i) => (
+            <li class={i === perjalanan.length - 1 ? 'now' : undefined}>
+              <b>{j.year}</b>
+              <p>{j.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -82,7 +89,7 @@ import { proyekLain } from '../data/projects';
   <section class="section bg-paper" id="proyek">
     <div class="container">
       <h2 class="h2">Proyek unggulan</h2>
-      <OradoFeature />
+      <OradoFeature caseStudyHref="/proyek#studi-kasus-orado" />
       <div class="proj-grid scroller">
         <ProjectCard {...proyekLain[0]} />
         <ProjectCard {...proyekLain[2]} />

@@ -33,7 +33,7 @@ Hampir semua teks ada di folder `src/data/`, jadi tidak perlu menyentuh komponen
 |---|---|
 | `src/data/site.ts` | nama, tagline, email, alamat, angka statistik, menu |
 | `src/data/content.ts` | visi/misi, nilai, layanan, keunggulan, proses kerja, teknologi, model kerja sama |
-| `src/data/projects.ts` | empat proyek selain ORADO |
+| `src/data/projects.ts` | empat proyek selain ORADO dan studi kasus ORADO |
 | `src/pages/*.astro` | teks dan susunan tiap halaman |
 | `src/styles/global.css` | warna (di bagian `:root`), ukuran huruf, dan tata letak |
 
@@ -42,6 +42,8 @@ Gambar ada di `src/assets/` dan otomatis dioptimalkan saat build. Logo ada di `s
 ## Yang perlu diganti sebelum rilis
 
 - **Nama dan tampilan proyek** di `src/data/projects.ts` (Sinergi ERP, Sinergi Mobile, Nusa Brain Arena, Reservasi Resto) masih contoh. Ganti dengan nama dan screenshot proyek yang sebenarnya.
+- **Perjalanan perusahaan** (tahun 2022, 2023, 2025, 2026) di `src/data/content.ts` masih perkiraan. Sesuaikan dengan sejarah yang sebenarnya.
+- **Ilustrasi hero** di beranda (`src/components/HeroVisual.astro`) berisi contoh kode dan data klasemen. Ganti isinya bila ingin.
 - **Daftar teknologi** di `src/data/content.ts`: hapus yang tidak dipakai tim (misalnya Google Cloud atau Azure).
 - **Testimoni** sengaja tidak dimasukkan. Tambahkan bila sudah ada kutipan asli dari klien.
 - **Nomor WhatsApp dan jam kerja** belum ada. Tambahkan di `src/data/site.ts` dan `src/pages/kontak.astro` bila diperlukan.

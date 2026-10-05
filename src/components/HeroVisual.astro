@@ -1,0 +1,77 @@
+---
+// Ilustrasi hero: jendela kode, aplikasi mobile, dan status build.
+// Semua ukuran memakai satuan em supaya ikut mengecil di layar kecil.
+---
+<div class="hv" role="img" aria-label="Ilustrasi kode program, aplikasi mobile, dan status build yang lulus">
+  <div class="in" aria-hidden="true">
+    <div class="win">
+      <div class="bar"><i></i><i></i><i></i><span>composables/useTournament.ts</span></div>
+      <div class="code">
+        <div><em>1</em><span class="kw">import</span> &#123; ref &#125; <span class="kw">from</span> <span class="sg">"vue"</span>;</div>
+        <div><em>2</em></div>
+        <div><em>3</em><span class="kw">export function</span> <span class="fn">useTournament</span>() &#123;</div>
+        <div><em>4</em>  <span class="cm">// satu platform, seluruh nusantara</span></div>
+        <div><em>5</em>  <span class="kw">const</span> athletes = <span class="fn">ref</span>([]);</div>
+        <div><em>6</em>  <span class="kw">const</span> register = (a) =&gt;</div>
+        <div><em>7</em>    <span class="fn">$fetch</span>(<span class="sg">"/api/athletes"</span>, &#123; body: a &#125;);</div>
+        <div><em>8</em>  <span class="kw">return</span> &#123; athletes, register &#125;;</div>
+        <div><em>9</em>&#125;</div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="bt"><span class="ok"></span>Build lulus, siap rilis</div>
+      <div class="bl"><span>tests</span>248 passed</div>
+      <div class="bl"><span>deploy</span>production</div>
+      <div class="bl"><span>uptime</span>stabil</div>
+    </div>
+
+    <div class="phone">
+      <div class="scr">
+        <div class="notch"></div>
+        <div class="pt">Klasemen nasional</div>
+        <div class="ps">Seluruh provinsi</div>
+        <div class="row"><b class="g">1</b><div>Tim Garuda<small>Sumatera Utara</small></div><u>2.480</u></div>
+        <div class="row"><b>2</b><div>Tim Cendrawasih<small>Papua</small></div><u>2.355</u></div>
+        <div class="row"><b>3</b><div>Tim Borneo<small>Kalimantan Timur</small></div><u>2.310</u></div>
+        <div class="row"><b>4</b><div>Tim Samudra<small>Sulawesi Selatan</small></div><u>2.190</u></div>
+        <div class="tabs"><i class="a"></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hv { container-type: inline-size; width: 100%; max-width: 600px; margin-inline: auto; }
+  .in { font-size: calc(100cqw / 54); position: relative; width: 54em; height: 48em; }
+  .win { position: absolute; left: 0; top: 0; width: 45em; background: #0f1a38; border: 1px solid rgba(255,255,255,.14); border-radius: 2.2em; overflow: hidden; box-shadow: 0 4em 8em rgba(0,0,0,.45); font-family: 'DejaVu Sans Mono', ui-monospace, Menlo, Consolas, monospace; }
+  .bar { display: flex; align-items: center; gap: .8em; padding: 1.2em 1.8em; background: #0b1430; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 1.2em; color: #8e9bc9; }
+  .bar i { width: .9em; height: .9em; border-radius: 50%; background: #2a3868; display: block; }
+  .bar span { margin-left: 1em; }
+  .code { padding: 1.8em 0; font-size: 1.3em; line-height: 1.75; color: #dde5ff; }
+  .code div { white-space: pre; }
+  .code em { font-style: normal; display: inline-block; width: 2.6em; text-align: right; margin-right: 1.4em; color: #4c5a8c; }
+  .kw { color: #8fa8ff; } .sg { color: #34e0c0; } .cm { color: #6f7ba8; } .fn { color: #ffd58a; }
+
+  .build { position: absolute; left: 0; top: 34em; width: 31em; background: #fff; border-radius: 2.2em; padding: 2em 2.4em; color: #0a1433; box-shadow: 0 3em 6em rgba(0,0,0,.4); font-family: 'DejaVu Sans Mono', ui-monospace, Menlo, Consolas, monospace; }
+  .bt { display: flex; align-items: center; gap: 1.1em; font-family: var(--font); font-weight: 600; font-size: 1.8em; line-height: 1.2; }
+  .ok { width: 1.2em; height: 1.2em; border-radius: 50%; background: #1fcb9f; display: block; flex: none; }
+  .bl { font-size: 1.3em; color: #5c6785; line-height: 1.7; }
+  .bl span { display: inline-block; width: 4.4em; }
+  .bt + .bl { margin-top: .8em; }
+
+  .phone { position: absolute; right: 0; top: 15em; width: 19em; height: 33em; border-radius: 4.4em; background: #050b1f; padding: 1em; box-shadow: 0 3em 6em rgba(0,0,0,.45); }
+  .scr { position: relative; height: 100%; background: #f5f7fc; border-radius: 3.5em; overflow: hidden; padding: 4em 1.3em 0; color: #0a1433; font-family: var(--font); }
+  .notch { position: absolute; top: .8em; left: 50%; width: 5.4em; height: 1.4em; border-radius: .8em; background: #050b1f; transform: translateX(-50%); }
+  .pt { font-weight: 600; font-size: 1.45em; white-space: nowrap; letter-spacing: -.01em; line-height: 1.2; }
+  .ps { font-size: .9em; color: #7c86a4; margin-top: .2em; }
+  .row { display: flex; align-items: center; gap: .7em; background: #fff; border-radius: 1.1em; padding: .7em .8em; margin-top: .7em; font-weight: 500; font-size: .92em; line-height: 1.25; }
+  .row b { width: 2.2em; height: 2.2em; border-radius: 50%; background: #e4ebff; color: #3366ff; display: grid; place-items: center; font-size: .9em; flex: none; }
+  .row b.g { background: #34e0c0; color: #0a1433; }
+  .row div { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row small { display: block; font-weight: 400; font-size: .74em; color: #8a93ae; overflow: hidden; text-overflow: ellipsis; }
+  .row u { text-decoration: none; color: #3366ff; font-weight: 600; font-size: .95em; white-space: nowrap; }
+  .tabs { position: absolute; left: 1.2em; right: 1.2em; bottom: 1.1em; background: #fff; border-radius: 1.6em; height: 3.6em; display: flex; justify-content: space-around; align-items: center; }
+  .tabs i { width: 1.5em; height: 1.5em; border-radius: .5em; background: #d8dfee; display: block; }
+  .tabs i.a { background: #3366ff; }
+</style>
